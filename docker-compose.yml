@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  website-monitor:
+    build: .
+    container_name: website-monitor
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./monitor.log:/app/monitor.log
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
